@@ -50,6 +50,7 @@ begin
 				END
 		--DROP TABLE temporal
 		--PRIMERA MODIFICACION
+		-- otra modificacion
 	END TRY
 	BEGIN CATCH
 		SET @Resultado = 0
