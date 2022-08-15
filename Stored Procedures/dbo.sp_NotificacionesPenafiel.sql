@@ -2,7 +2,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
-CREATE PROCEDURE [dbo].[sp_NotificacionesPenafiel](@leg varchar(100),@titulo varchar(100),@mensaje varchar(200))
+CREATE PROCEDURE [dbo].[sp_NotificacionesPenafiel](@leg varchar(100),@titulo varchar(100),@mensaje varchar(max))
 	
 AS
 BEGIN
