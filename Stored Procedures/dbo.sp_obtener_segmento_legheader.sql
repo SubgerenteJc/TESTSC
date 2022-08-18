@@ -11,4 +11,6 @@ begin
 	from legheader WHERE
 	ord_hdrnumber in (SELECT ord_hdrnumber from orderheader where ord_hdrnumber = @orden)
 end
+
+--- MODIFICACIONES
 GO
