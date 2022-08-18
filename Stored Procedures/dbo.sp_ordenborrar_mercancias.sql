@@ -20,7 +20,7 @@ DECLARE
 		)
 		END
 		DELETE freightdetail where stp_number in (select stp_number from stops where stp_event in (select abbr from eventcodetable where ect_billable = 'Y') and lgh_number in(
-        select lgh_number from legheader where ord_hdrnumber in (1192968))) and fgt_count = 0
+        select lgh_number from legheader where ord_hdrnumber in (@Ai_orden))) and fgt_count = 0
 
 		DELETE freightdetail where stp_number in (select stp_number from stops where stp_event in (select abbr from eventcodetable where ect_billable = 'Y') and lgh_number in(
         select lgh_number from legheader where ord_hdrnumber in (@Ai_orden))) and cmd_code in ('UNKNOWN','MERGENER')

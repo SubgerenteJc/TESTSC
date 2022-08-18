@@ -1574,7 +1574,7 @@ BEGIN
 						IF @li_numsegmento > 0
 							BEGIN -- 3 cuando si hay un segmento valido se inserta en la tabla
 								Insert segmentosportimbrar_JR(billto,segmento,estatus,observaciones, fecha )
-								values(@ls_billto,@li_numsegmento,1,'Segmento de la orden:'+CAST(@ll_orden as varchar(10)),getdate()) 
+								values(@ls_billto,@li_numsegmento,1,'TLH Seg de la orden:'+CAST(@ll_orden as varchar(10)),getdate()) 
 							END -- 3 cuando si h|ay una orden en PLN
 				--	END -- 2 cuando la unidad esta en QSP
 			END--1 status a DSP

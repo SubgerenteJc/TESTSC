@@ -7,7 +7,7 @@ CREATE procedure [dbo].[sp_obtener_segmento_legheader](
 )
 as
 begin
-	select lgh_number as segmento 
+	select  min(lgh_number) as segmento 
 	from legheader WHERE
 	ord_hdrnumber in (SELECT ord_hdrnumber from orderheader where ord_hdrnumber = @orden)
 end

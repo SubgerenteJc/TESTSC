@@ -13,6 +13,7 @@ GO
 
 
 
+
 CREATE VIEW [dbo].[VISTA_fe_Header]
 AS
 /* ********************************CASO SINGLE INVOICES*********************/ 
@@ -51,7 +52,7 @@ totalletra = REPLACE(REPLACE(dbo.NumeroEnLetra(ROUND((abs(ivh_totalcharge)), 0, 
 								 
 								  /*- PARAMETRIZACION DATOS DE PREFERENCIA FACTURACION CLIENTES-------------------------------------------------*/ metpago = (CASE ivh_creditmemo WHEN 'N' THEN isnull(a.cmp_misc3, '99') 
                          WHEN 'Y' THEN isnull(a.cmp_othertype3, '99') ELSE '99' END), cuentaref = CASE WHEN invoiceheader.ivh_creditmemo = 'Y' THEN isnull
-                             ((SELECT        uuid
+                             ((SELECT        max(uuid)
                                  FROM            [172.24.16.113].CFDI.DBO.[cfdi_detallecfdi] WITH (nolock)
                                  WHERE        folio = CAST(invoiceheader.ivh_cmrbill_link AS VARCHAR)), '') ELSE '' END, 
 				      
@@ -131,7 +132,7 @@ totalletra = REPLACE(REPLACE(dbo.NumeroEnLetra(ROUND((abs(ivh_totalcharge)), 0, 
                          F.cty_name) + ' ' + isnull(F.cty_state, '') + ' ' + LEFT(isnull(E.cmp_country, ''), 15) + ' ' + LEFT(isnull(replace(E.cmp_zip, '|', ''), ''), 6), rfcdestino = isnull(E.cmp_taxid, ''), invoice = ivh_invoicenumber, orden = ord_number, 
                          movimiento = mov_number, bandera = ISNULL(ivh_ref_number, ''), ultinvoice = ivh_invoicenumber, tipocomprobante = (CASE ivh_creditmemo WHEN 'N' THEN 'I' WHEN 'Y' THEN 'E' END), lugarexpedicion = '76240', 
                          confirmacion = '', relacion = CASE WHEN invoiceheader.ivh_creditmemo = 'Y' THEN '01' ELSE '' END, uuidrel = CASE WHEN invoiceheader.ivh_creditmemo = 'Y' THEN isnull
-                             ((SELECT        uuid
+                             ((SELECT      max(  uuid )
                                  FROM            [172.24.16.113].CFDI.DBO.[cfdi_detallecfdi] WITH (nolock)
                                  WHERE        folio = CAST(invoiceheader.ivh_cmrbill_link AS VARCHAR)), '') ELSE '' END, invoiceheader.ivh_cmrbill_link, tipodetalle = (CASE ivh_creditmemo WHEN 'N' THEN 'FAC' WHEN 'Y' THEN 'NCR' END)
 ,RevType4 =(select ord_revtype4 from orderheader oh where oh.ord_hdrnumber = invoiceheader.ord_hdrnumber)
