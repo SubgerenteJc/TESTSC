@@ -6,6 +6,7 @@ GO
 
 
 
+
 CREATE VIEW [dbo].[vista_driverscompany]
 AS
 SELECT     rtrim(mpp_id) +':' +rtrim(mpp_firstname) +' '+ rtrim(mpp_lastname) as Driver, 
@@ -28,7 +29,8 @@ mpp_type3 as ProyectoDriver,
 mpp_mile_day7 as Prodsietedias,
 mpp_tractornumber as Tractor,
 
-(select name from labelfile with (nolock)  where labeldefinition = 'RevType3' and abbr =(select cmp_revtype3 from company with (nolock)  where  CMP_ID = mpp_avl_cmp_id)) AS Proyecto
+(select name from labelfile with (nolock)  where labeldefinition = 'RevType3' and abbr =(select cmp_revtype3 from company with (nolock)  where  CMP_ID = mpp_avl_cmp_id)) AS Proyecto,
+mpp_division as EC
 
 FROM         dbo.manpowerprofile with (nolock) 
 WHERE     (mpp_status not in ('OUT')) --,'SIN','VAC'))

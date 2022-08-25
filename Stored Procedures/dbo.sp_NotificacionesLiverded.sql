@@ -17,7 +17,7 @@ BEGIN
 	EXEC msdb.dbo.sp_send_dbmail  
     @profile_name = 'smtp liverpool',  
     --@recipients = 'lbarron@convoy360.mx',  
-	@recipients = 'jcherrera@bgcapitalgroup.mx;operacionliverpool@tdr.com.mx;cremieuxtellezalexa@gmail.com;lanaya@tdr.com.mx;operacionliverpool2@tdr.com.mx;operacionliverpool3@tdr.com.mx;despacholiverpool@tdr.com.mx;coperacionesmx2@tdr.com.mx;coperacionesmx3@tdr.com.mx',  
+	@recipients = 'jcherrera@bgcapitalgroup.mx;operacionliverpool@tdr.com.mx;cremieuxtellezalexa@gmail.com;lanaya@tdr.com.mx;operacionliverpool2@tdr.com.mx;operacionliverpool3@tdr.com.mx;despacholiverpool@tdr.com.mx;coperacionesmx2@tdr.com.mx;coperacionesmx3@tdr.com.mx;ejecutivosac1@tdr.com.mx',  
     --@body = 'DX > 500 Alerta de creacion masiva de Ordenes!!!!!', 
 	@body = @bodyC ,
     @subject = @subjectC;  

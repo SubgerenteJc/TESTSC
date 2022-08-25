@@ -8,6 +8,7 @@ GO
 
 
 
+
 CREATE VIEW [dbo].[Vista_gratificaciones_Roger_Junio]
 AS
 SELECT        TOP (100) PERCENT COUNT(*) AS veces, SUM(pd.pyd_amount) AS monto,  dbo.orderheader.ord_tractor as Tractor, Codigos_comprobacion.descripcion, pd.pyd_description,DATEPART(year, pd.pyd_createdon) AS añocrea, DATEPART(month, pd.pyd_createdon) AS mescrea, 
@@ -19,7 +20,7 @@ SELECT        TOP (100) PERCENT COUNT(*) AS veces, SUM(pd.pyd_amount) AS monto, 
                                FROM            dbo.labelfile
                                WHERE        (labeldefinition = 'RevType3') AND (abbr = dbo.orderheader.ord_revtype3)) AS proyOrden
 							   ,Codigos_comprobacion.[TipoAtribucion],pd.pyd_createdon 
-							   ,(Select [proyecto] from [dbo].[TractorProyHistory] tph where tph.[trc_number] = dbo.orderheader.ord_tractor and tph.[fecha] = cast(pd.pyd_createdon as date)) as proye,
+							   ,(Select max([proyecto]) from [dbo].[TractorProyHistory] tph where tph.[trc_number] = dbo.orderheader.ord_tractor and tph.[fecha] = cast(pd.pyd_createdon as date)) as proye,
 							    pd.pyh_payperiod as fechapago,
 							   orderheader.ord_revtype4 as EC
 FROM            dbo.paydetail AS pd WITH (nolock) 

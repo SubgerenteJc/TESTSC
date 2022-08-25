@@ -442,7 +442,7 @@ replace( (STUFF((
     'CP2_MER'                                                                                                                                                  --1 Tipo de Registro
 																	        +'|'+      
   cast( cast(
-    (select case when SUM(fgt_weight) <= 0 then 0.01 else SUM(fgt_weight)  end 
+    (select case when SUM(round(fgt_weight,2)) <= 0 then 0.01 else SUM(round(fgt_weight,2))  end 
 	from freightdetail where stp_number in  (select stp_number from stops where stp_type  ='PUP'  
 	and stops.ord_hdrnumber = orderheader.ord_hdrnumber))  																										--2 Peso Bruto Total original jr
 	as decimal(10,2))
@@ -454,8 +454,7 @@ replace( (STUFF((
 																	        +'|'+ 
 
  cast(cast(
-	
-	(select case when SUM(fgt_weight) <= 0 then 0.01 else SUM(fgt_weight)  end 
+	(select case when SUM(round(fgt_weight,2)) <= 0 then 0.01 else SUM(round(fgt_weight,2))  end 
 	from freightdetail where stp_number in  (select stp_number from stops where stp_type  ='PUP'  and stops.ord_hdrnumber = orderheader.ord_hdrnumber)) --original jr
 
 	/*+ original jr

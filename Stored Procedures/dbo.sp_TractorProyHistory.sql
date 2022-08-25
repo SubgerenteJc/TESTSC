@@ -20,9 +20,10 @@ AS
 BEGIN
 	IF(@accion = 1)
 	BEGIN
-		INSERT INTO TractorProyHistory ([trc_number], [trc_driver], [trc_status], [fecha], [trc_type3], [proyecto])
+		INSERT INTO TractorProyHistory ([trc_number], [trc_driver], [trc_status], [fecha], [trc_type3], [proyecto],[equipo_colaborativo])
 			SELECT trc_number,trc_driver,trc_status,CAST(GETDATE() AS date) AS Fecha,trc_fleet,(SELECT name FROM labelfile 
-			WHERE labeldefinition = 'Fleet' AND abbr = trc_fleet ) AS Proyecto
+			WHERE labeldefinition = 'Fleet' AND abbr = trc_fleet ) AS Proyecto,
+			trc_division
 			FROM tractorprofile
 			WHERE trc_status<>'OUT'
 	END

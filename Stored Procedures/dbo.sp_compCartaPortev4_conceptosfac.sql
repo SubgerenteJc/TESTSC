@@ -141,7 +141,7 @@ Select
 																					+'|'+
 '4.0'																											-- 4. Version Anexo
 																					+'|'+
-
+																					+ '\n' +
 
 --SECION HEADER (1:1)
 
@@ -221,7 +221,7 @@ Select
 																		       +'|'+     
     '76240'																										     --18 Lugar Expedicion   
 																		       +'|'+     
-	isnull((select replace(cmp_volunits  ,'|','') from company where cmp_id = orderheader.ord_billto),'601')		--19.Uso CFDI
+	isnull((select replace(cmp_volunits  ,'|','') from company where cmp_id = orderheader.ord_billto),'I03')		--19.Uso CFDI ??? preguntar a mike
 																			   +'|'+
     ''																											     --20 confirmacion
 																		       +'|'+     
@@ -233,9 +233,9 @@ Select
 																				 +'|'+
 	''																										     	 --24 nota 3
 																				 +'|'+
-	'01'																											-- 25 EXPORTACION catexportacion
+	''																											-- 25 EXPORTACION catexportacion cambio lugar 26
 																			 +'|'+
-	 ' FacAtrAdquirente??'																								--23 FacAtrAdquirente
+	 '01'																								--26 Exportacion cat exportacion cambio de lugar
 																			+'|'+
   
                                                                                + '\n' +
@@ -250,7 +250,7 @@ Select
 																	           +'|'+     
     isnull((select replace(cmp_name,'|','') from company where cmp_id = orderheader.ord_billto),'')                   --4 Nombre Receptor (R)
 																	           +'|'+   
-    ''                                                                                                                --5 Pais  
+    'MEX'                                                                                                                --5 Pais  
 																	           +'|'+  
 	isnull((select replace(cmp_address1,'|','') from company where cmp_id = orderheader.ord_billto),'')               --6 Calle (R)     
 																	           +'|'+   
