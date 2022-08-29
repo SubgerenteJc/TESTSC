@@ -7,9 +7,10 @@ GO
 
 
 
+
 CREATE VIEW [dbo].[vista_driverscompany]
 AS
-SELECT     rtrim(mpp_id) +':' +rtrim(mpp_firstname) +' '+ rtrim(mpp_lastname) as Driver, 
+SELECT     rtrim(mpp_id) as ID, rtrim(mpp_id) +':' +rtrim(mpp_firstname) +' '+ rtrim(mpp_lastname) as Driver, 
 cast(datepart(hh,mpp_avl_date) as int) as fecha,
 DATEDIFF(dd, mpp_avl_date, GETDATE()) AS DIFDIAS,
 CASE WHEN mpp_status IN ('AVL','PLN') THEN 0 ELSE  

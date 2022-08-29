@@ -19,6 +19,7 @@ CREATE TABLE [dbo].[driversProyHistory]
 [tractor] [varchar] (8) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [proyecto] [varchar] (20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [fechahoy] [datetime] NULL,
-[equipo_colaborativo] [varchar] (6) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+[equipo_colaborativo] [varchar] (6) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[ID_Driver] [varchar] (8) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
 ) ON [PRIMARY]
 GO
