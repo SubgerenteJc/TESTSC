@@ -39,17 +39,13 @@ select @esunafactura = 0
 --begin
 --select @esunaorden = 1
 --end
-
+/*
 if @lgh_hdrnumber >= 1330170 
 begin
 select @esunafactura = 1
 end
 
 
---if @esunaorden = 1
---begin
---	exec sp_compCartaPortev2_porOrden @lgh_hdrnumber	
---end
 
 if @esunafactura = 1
 begin
@@ -57,6 +53,7 @@ begin
 end
 Else
 begin
+*/
 		--obtiene el cliente billto
 		select @Cliente = isnull(oh.ord_billto,'N') from legheader lg, orderheader oh where 
 		lg.ord_hdrnumber = oh.ord_hdrnumber and
@@ -88,5 +85,5 @@ begin
 					end
 				--select '1 segmento'
 			end 
-end --fin de cuando no es orden
+--end --fin de cuando no es orden
 GO

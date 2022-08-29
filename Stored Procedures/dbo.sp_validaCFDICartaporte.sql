@@ -43,6 +43,7 @@ declare @lgh_hdrnumber2 varchar(20),
 		@num_movimiento int
 		, @esunafactura bit
 
+/* factura
 select @esunafactura = 0
 
 if @lgh_hdrnumber > 1330170 
@@ -50,6 +51,7 @@ begin
 select @esunafactura = 1
 end
 if @esunafactura = 1
+
 begin
 select @num_factura = cast(@lgh_hdrnumber as int)
 select @num_movimiento = mov_number from invoiceheader where ivh_hdrnumber = @num_factura
@@ -293,14 +295,14 @@ end
 
 ELSE
 begin
-
+*/
 select replace(Mensaje,'^','') as Mensaje, case when Mensaje like '%^%' then 'Error' else 'OK' end as Validacion from (
 
 
 select 
 
   case when 
-      (select count(Folio) from VISTA_Carta_Porte where LegNum = @lgh_hdrnumber) >=1 then '<br> <br> ****Ya existe un CFDI Complemento Carta Porte Generado 
+      (select count(Folio) from VISTA_Carta_Porte where  Serie = 'TDRXP' and LegNum = @lgh_hdrnumber) >=1 then '<br> <br> ****Ya existe un CFDI Complemento Carta Porte Generado 
 	                                                                                       para el número de segmento '+ '<b style='+''''+'color:black;'+''''+'>' + @lgh_hdrnumber+ ' </b> *****'  + '<br>'+  
 	                                                                                       '<br>' + 
 																						  '<b style='+''''+'color:red;'+''''+'> Si el viaje se segmento con otra unidad/operador es necesario
@@ -513,5 +515,5 @@ left join company billcmp      on orderheader.ord_billto          = billcmp.cmp_
 where lgh_number = @lgh_hdrnumber
 
 ) as q
-end
+--end
 GO
