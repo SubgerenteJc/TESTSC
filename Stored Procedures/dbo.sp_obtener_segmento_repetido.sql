@@ -7,6 +7,6 @@ CREATE PROCEDURE [dbo].[sp_obtener_segmento_repetido] (@leg varchar(1000))
 	
 AS
 BEGIN
-		SELECT Folio FROM VISTA_Carta_Porte WHERE Folio = @leg
+		SELECT Folio,Serie FROM VISTA_Carta_Porte WHERE Folio = @leg
 END
 GO

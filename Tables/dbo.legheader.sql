@@ -1547,7 +1547,8 @@ AS
 		@ls_operador_PLN Varchar(8),
 		@ls_billto		 Varchar(8),
 		@li_numsegmento	 Integer,
-		@lm_totalcharge  money
+		@lm_totalcharge  money,
+		@ls_ord_fromorder varchar(12)
 		
 IF UPDATE (lgh_outstatus)
 BEGIN
@@ -1560,9 +1561,10 @@ BEGIN
 		FROM legheader a, INSERTED b
 		WHERE   a.lgh_number = b.lgh_number
 
-		select @lm_totalcharge = ord_totalcharge, @ls_billto = ord_billto from orderheader where ord_hdrnumber = @ll_orden
+		select @lm_totalcharge = ord_totalcharge, @ls_billto = ord_billto,
+		@ls_ord_fromorder = isnull(ord_fromorder,'NA') from orderheader where ord_hdrnumber = @ll_orden
 
-		IF @ls_status = 'DSP' and @lm_totalcharge > 0.00
+		IF @ls_status = 'DSP' and @lm_totalcharge > 0.00 and @ls_ord_fromorder <> 'SAYER-VACIO'
 			BEGIN	--1 status a STD (Empezado)
 					----Busca el numero del segmento
 					--	select @li_numsegmento = min(lgh_number) 
@@ -1579,6 +1581,7 @@ BEGIN
 				--	END -- 2 cuando la unidad esta en QSP
 			END--1 status a DSP
 END -- 0 cuando el campo act es ord_status
+
 GO
 SET QUOTED_IDENTIFIER ON
 GO
